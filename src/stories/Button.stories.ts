@@ -15,7 +15,7 @@ const meta = {
     variant: { control: 'radio' },
     color: { control: 'radio' },
     size: { control: 'radio' },
-    fullWidth: { control: 'check' },
+    fullWidth: { control: 'boolean' },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
     label: { control: 'text' },
