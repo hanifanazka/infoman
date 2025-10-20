@@ -53,6 +53,7 @@ export const Button = ({
     <button
       type="button"
       className={['button', ...Object.values(classes)].join(' ')}
+      disabled={disabled}
       {...props}
     >
       {label}

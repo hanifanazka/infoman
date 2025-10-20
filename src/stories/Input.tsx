@@ -34,6 +34,7 @@ export const Input = ({
     <>
     <input
       className={['input', ...Object.values(classes)].join(' ')}
+      disabled={disabled}
       {...props}
     />
     <style jsx>{`
