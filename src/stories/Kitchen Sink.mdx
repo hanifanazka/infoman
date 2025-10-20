@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { Button } from "./Button";
+import { Input } from "./Input";
 
 <Meta title="Kitchen Sink" />
 
@@ -28,5 +29,15 @@ and interaction across the full spectrum of web standards.
 </div>
 ))}
 </div>
+))}
+
+## Inputs
+
+<div style={{display:'flex',flexWrap:'wrap',alignItems:'start'}}>
+{['sm','md','lg'].map((size) => (
+  <Input
+    size={size}
+    style={{margin:2}}
+  />
 ))}
 </div>
