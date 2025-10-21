@@ -16,6 +16,8 @@ and interaction across the full spectrum of web standards.
 <div style={{display:'flex',flexWrap:'wrap',alignItems:'start'}}>
 {['primary','danger'].map((color) => (
 <div>
+{[true,false].map((loading) => (
+<div>
 {['sm','md','lg'].map((size) => (
 <div>
 {['solid','soft','outline','plain'].map((variant) => (
@@ -24,8 +26,11 @@ and interaction across the full spectrum of web standards.
     size={size}
     variant={variant}
     color={color}
+    loading={loading}
     style={{margin:2}}
   />
+))}
+</div>
 ))}
 </div>
 ))}

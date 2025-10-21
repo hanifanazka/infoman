@@ -1,5 +1,7 @@
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
+import Ring from  './assets/ring-resize.svg';
+import Image from "next/image";
 
 export interface ButtonProps {
   /** The global variant to use */
@@ -49,6 +51,11 @@ export const Button = ({
   if (disabled) classes.disabled = 'button--disabled';
   if (loading) classes.loading = 'button--disabled button--loading';
 
+  let ringSize = 16;
+  if (size == 'sm') ringSize = 12;
+  if (size == 'md') ringSize = 16;
+  if (size == 'lg') ringSize = 20;
+
   return (
     <button
       type="button"
@@ -56,13 +63,25 @@ export const Button = ({
       disabled={disabled}
       {...props}
     >
-      {label}
+      <div className='button__label'>
+        <div className='button__label__text'>{label}</div>
+        {loading && 
+          <div className='button__label__ring'>
+            <Image src={Ring} alt='loading-ring' width={ringSize} height={ringSize} />
+          </div>
+        }
+      </div>
       <style jsx>{`
         .button {
           border: none;
           border-radius: 0;
           font-weight: 600;
           font-family: 'Inter';
+        }
+        .button__label {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .button--solid {
           background-color: var(--button-bg);
@@ -102,17 +121,33 @@ export const Button = ({
           --button-bg: #c82333;
           --button-fg: white;
         }
+        .button--sm .button__label {
+          font-size: 10px;
+          gap: 4px;
+        }
+        .button--sm .button__label .button__label__text {
+          font-size: 10px;
+        }
         .button--sm {
           padding: .25rem .5rem;
-          font-size: 10px;
+        }
+        .button--md .button__label {
+          gap: 6px;
+        }
+        .button--md .button__label .button__label__text {
+          font-size: 12px;
         }
         .button--md {
           padding: .5rem 1rem;
-          font-size: 12px;
+        }
+        .button--lg .button__label {
+          gap: 8px;
+        }
+        .button--lg .button__label .button__label__text {
+          font-size: 16px;
         }
         .button--lg {
           padding: .75rem 1rem;
-          font-size: 16px;
         }
         .button--fullwidth {
           width: 100%;
@@ -120,6 +155,27 @@ export const Button = ({
         .button--disabled {
           cursor: not-allowed;
           pointer-events: none;
+          & .button__label {
+            position: relative;
+          }
+          & .button__label__text {
+            opacity: 0;
+          }
+          & .button__label__ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+          }
+          &.button--solid {
+            background-color: hsl(from var(--button-bg) h calc(s - 40) l / .5);
+          }
+          &.button--plain {
+            color: hsl(from var(--button-bg) h calc(s - 40) l / .5);
+            background-color: hsl(from var(--button-bg) h 10 90 / .5);
+          }
         }
         .button--loading {
           /* TODO */
