@@ -111,7 +111,7 @@ export const Button = ({
           color: var(--button-bg);
         }
         .button--plain:hover {
-          background-color: hsl(from var(--button-bg) h 30 65 / alpha);
+          background-color: hsl(from var(--button-bg) h 30 65 / .5);
         }
         .button--primary {
           --button-bg: #004C54;
