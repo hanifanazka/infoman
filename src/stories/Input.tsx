@@ -41,8 +41,6 @@ export const Input = ({
         .input {
           border: 1px solid;
           border-radius: 0;
-          font-weight: 600;
-          font-family: 'Inter';
         }
         .input--sm {
           padding: .25rem .25rem;
