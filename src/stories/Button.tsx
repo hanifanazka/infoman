@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export interface ButtonProps {
   /** The global variant to use */
-  variant?: 'solid' | 'outline' | 'soft' | 'plain';
+  variant?: 'solid' /*| 'outline' | 'soft' */| 'plain';
   /** The color of the component */
   color?: 'primary' | 'danger';
   /** The size of the component */
@@ -39,9 +39,9 @@ export const Button = ({
 }: ButtonProps) => {
   const classes: ButtonClassMap = {};
   if (variant == 'solid') classes.variant = 'button--solid';
-  if (variant == 'outline') classes.variant = 'button--outline';
+  // if (variant == 'outline') classes.variant = 'button--outline';
   if (variant == 'plain') classes.variant = 'button--plain';
-  if (variant == 'soft') classes.variant = 'button--soft';
+  // if (variant == 'soft') classes.variant = 'button--soft';
   if (color == 'primary') classes.color = 'button--primary';
   if (color == 'danger') classes.color = 'button--danger';
   if (size == 'sm') classes.size = 'button--sm';
