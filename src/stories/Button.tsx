@@ -74,7 +74,6 @@ export const Button = ({
       <style jsx>{`
         .button {
           border: none;
-          border-radius: 0;
           font-weight: 600;
           font-family: 'Inter';
         }
@@ -130,15 +129,17 @@ export const Button = ({
         }
         .button--sm {
           padding: .25rem .5rem;
+          border-radius: 4px;
         }
         .button--md .button__label {
           gap: 6px;
         }
         .button--md .button__label .button__label__text {
-          font-size: 12px;
+          font-size: 14px;
         }
         .button--md {
           padding: .5rem 1rem;
+          border-radius: 6px;
         }
         .button--lg .button__label {
           gap: 8px;
