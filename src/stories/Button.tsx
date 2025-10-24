@@ -9,7 +9,7 @@ export interface ButtonProps {
   /** The color of the component */
   color?: 'primary' | 'danger';
   /** The size of the component */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' /*| 'lg'*/;
   /** If `true`, the button will take up the full width of its container. */
   fullWidth?: boolean;
   /** If `true`, the component is disabled. */
@@ -46,7 +46,7 @@ export const Button = ({
   if (color == 'danger') classes.color = 'button--danger';
   if (size == 'sm') classes.size = 'button--sm';
   if (size == 'md') classes.size = 'button--md';
-  if (size == 'lg') classes.size = 'button--lg';
+  // if (size == 'lg') classes.size = 'button--lg';
   if (fullWidth) classes.fullWidth = 'button--fullwidth';
   if (disabled) classes.disabled = 'button--disabled';
   if (loading) classes.loading = 'button--disabled button--loading';
@@ -54,7 +54,7 @@ export const Button = ({
   let ringSize = 16;
   if (size == 'sm') ringSize = 12;
   if (size == 'md') ringSize = 16;
-  if (size == 'lg') ringSize = 20;
+  // if (size == 'lg') ringSize = 20;
 
   return (
     <button
