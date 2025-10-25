@@ -113,7 +113,7 @@ export const Button = ({
           background-color: hsl(from var(--button-bg) h 30 65 / .5);
         }
         .button--primary {
-          --button-bg: #004C54;
+          --button-bg: #0B6BCB;
           --button-fg: white;
         }
         .button--danger {
@@ -160,7 +160,7 @@ export const Button = ({
             position: relative;
           }
           & .button__label__text {
-            opacity: 0;
+            opacity: .7;
           }
           & .button__label__ring {
             position: absolute;
@@ -179,7 +179,9 @@ export const Button = ({
           }
         }
         .button--loading {
-          /* TODO */
+          & .button__label__text {
+            opacity: 0;
+          }
         }
       `}</style>
     </button>
