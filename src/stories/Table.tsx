@@ -1,23 +1,18 @@
 import React from "react";
-import { getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import TablePrimitive from "./TablePrimitive";
 
-const columns = [
-  { header: "colA", accessorKey: "colA" },
-  { header: "colB", accessorKey: "colB" },
-  { header: "colC", accessorKey: "colC" },
-];
+interface TableProps<T> {
+  data: T[];
+  columns: ColumnDef<T>[];
+}
 
-type Cols = { colA: number, colB: number, colC: number };
-const cols: Cols[] = [];
-
-Array(20).fill(0).forEach((_, i) => {
-  cols.push({ colA: i, colB: i, colC: i })
-});
-
-export function Table() {
+export function Table<T>({
+  data,
+  columns,
+}: TableProps<T>) {
   const table = useReactTable({
-    data: cols,
+    data: data,
     columns: columns,
     getCoreRowModel: getCoreRowModel(),
   });
