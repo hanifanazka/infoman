@@ -12,7 +12,6 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    size: { control: 'radio' },
     fullWidth: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },
