@@ -67,7 +67,7 @@ export function Menu({ label, actions, anchor }: MenuProps) {
             padding: .5rem;
             border-radius: .5rem;
 
-            border: solid 1px rgba(0, 0, 0, .25);
+            border: solid 1px rgba(99 107 116 / 0.2);
 
             background-color: white;
             box-shadow: rgba(21, 21, 21, 0.08) 0px 2px 8px -2px, rgba(21, 21, 21, 0.08) 0px 6px 12px -2px;
@@ -84,7 +84,7 @@ export function Menu({ label, actions, anchor }: MenuProps) {
               scale: 95%;
               opacity: 0;
             }
-            &[data-focus] { background: #0005; }
+            &[data-focus] { background: rgba(99 107 116 / 0.2); }
           }
       `}</style>
     </HUIMenu>
