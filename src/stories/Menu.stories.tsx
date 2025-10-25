@@ -34,3 +34,24 @@ export const Default: Story = {
     ]
   },
 };
+
+export const Triplet: Story = {
+  args: {
+    label: "...",
+    anchor: "bottom end",
+
+    actions: [
+      {
+        label: "Hi",
+        onClick: () => alert("Hi"),
+      },
+      {
+        label: "Loognsggsg",
+        onClick: () => alert("Loognsggsg"),
+      },
+    ],
+
+    variant: "plain",
+    size: "sm"
+  },
+};

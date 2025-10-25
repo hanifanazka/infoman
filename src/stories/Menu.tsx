@@ -12,6 +12,10 @@ type Placement = 'top' | 'right' | 'bottom' | 'left';
 type AnchorProps = `${Placement}` | `${Placement} ${Align}`;
 
 export interface MenuProps {
+  /** The global variant to use */
+  variant?: 'solid' | 'plain';
+  /** The size of the component */
+  size?: 'sm' | 'md';
   /** Button contents */
   label: string;
   /** Configures the way the dropdown is anchored to the button */
@@ -25,11 +29,22 @@ export interface MenuProps {
   }[];
 }
 
-export function Menu({ label, actions, anchor }: MenuProps) {
+export function Menu({
+  variant = 'solid',
+  label,
+  size = 'md',
+  actions,
+  anchor
+}: MenuProps) {
+
   return (
     <HUIMenu>
       <HUIMenuButton as={React.Fragment}>
-        <Button label={label} />
+        <Button
+          label={label}
+          variant={variant}
+          size={size}
+        />
       </HUIMenuButton>
       <HUIMenuItems
         transition
