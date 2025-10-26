@@ -7,7 +7,7 @@ export interface ButtonProps {
   /** The global variant to use */
   variant?: 'solid' /*| 'outline' | 'soft' */| 'plain';
   /** The color of the component */
-  color?: 'primary' | 'danger';
+  color?: 'primary' | 'secondary' | 'danger';
   /** The size of the component */
   size?: 'sm' | 'md' /*| 'lg'*/;
   /** If `true`, the button will take up the full width of its container. */
@@ -44,6 +44,7 @@ export const Button = ({
   if (variant == 'plain') classes.variant = 'button--plain';
   // if (variant == 'soft') classes.variant = 'button--soft';
   if (color == 'primary') classes.color = 'button--primary';
+  if (color == 'secondary') classes.color = 'button--secondary';
   if (color == 'danger') classes.color = 'button--danger';
   if (size == 'sm') classes.size = 'button--sm';
   if (size == 'md') classes.size = 'button--md';
@@ -118,6 +119,15 @@ export const Button = ({
         .button--primary {
           --button-bg: #0B6BCB;
           --button-fg: white;
+        }
+        .button--secondary {
+          --button-bg: rgba(36, 41, 46, 0.15);
+          --button-fg: rgba(90, 94, 98);
+          border: solid 1px rgba(90, 94, 98, 0.12);
+          &.button--plain {
+            color: var(--button-fg);
+            border: none;
+          }
         }
         .button--danger {
           --button-bg: #c82333;

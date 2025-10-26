@@ -56,7 +56,7 @@ export function Alert({
         <div className="text-desc">{children}</div>
       </div>
       <div className="action">
-        <Button label={buttonContent} variant="plain" onClick={onRemove} />
+        <Button label={buttonContent} onClick={onRemove} color="secondary" />
       </div>
       <style jsx>{`
         .alert {
