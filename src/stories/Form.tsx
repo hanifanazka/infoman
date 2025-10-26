@@ -59,8 +59,8 @@ export function Form() {
           <div className="fieldset" style={{ gridColumn: "3 / span 2" }}>
             Time Range
             <div style={{ display: "grid", gap: 22, gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>from <Input fullWidth /></div>
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>to <Input fullWidth /></div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>from <Input fullWidth type="date" /></div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>to <Input fullWidth type="date" /></div>
             </div>
           </div>
         </FRMKForm>
