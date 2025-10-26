@@ -1,6 +1,20 @@
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
 
+type CustomInputTypeAttribute =
+        | "date"
+        | "datetime-local"
+        | "email"
+        | "month"
+        | "number"
+        | "password"
+        | "search"
+        | "tel"
+        | "text"
+        | "time"
+        | "url"
+        | "week"
+
 export interface InputProps {
   /** If `true`, the input will take up the full width of its container. */
   fullWidth?: boolean;
@@ -8,6 +22,7 @@ export interface InputProps {
   disabled?: false;
   /** Optional click handler */
   onClick?: () => void;
+  type?: CustomInputTypeAttribute;
 }
 
 type InputClassMap = {
@@ -18,7 +33,7 @@ type InputClassMap = {
 export const Input = ({
   fullWidth = false,
   disabled = false,
-  ...props
+  type = "text",
 }: InputProps) => {
   const classes: InputClassMap = {};
   if (fullWidth) classes.fullWidth = 'input--fullwidth';
@@ -29,7 +44,7 @@ export const Input = ({
     <input
       className={['input', ...Object.values(classes)].join(' ')}
       disabled={disabled}
-      {...props}
+      type={type}
     />
     <style jsx>{`
         .input {
@@ -40,6 +55,12 @@ export const Input = ({
           padding: 0 8px;
           min-height: 2rem;
           box-sizing: border-box;
+
+          &:focus-visible {
+            border-color: #3584E4;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(53, 132, 228, .2);
+          }
         }
         .input--fullwidth {
           width: 100%;
