@@ -13,7 +13,6 @@ export function Table<T>({
   columns,
   onRowSelectionChange,
 }: TableProps<T>) {
-  onRowSelectionChange = console.log;
 
   columns = [{
     id: 'select',
