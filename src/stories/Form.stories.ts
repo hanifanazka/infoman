@@ -7,7 +7,6 @@ import { Form } from './Form';
 const meta = {
   title: 'Example/Form',
   component: Form,
-  tags: ['autodocs'],
   argTypes: {
     fullWidth: { control: 'boolean' },
     disabled: { control: 'boolean' },
