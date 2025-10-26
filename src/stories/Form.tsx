@@ -4,10 +4,12 @@ import { Input } from "./Input";
 import { Table } from "./Table";
 import { Default } from "./Table.stories";
 import { Select } from "./Select";
+import { GlobalStyle } from "./GlobalStyle";
 
 export function Form() {
   return (
     <>
+      <GlobalStyle/>
       <Formik
         initialValues={{
           contains: "",
