@@ -2,25 +2,21 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 import { fn } from 'storybook/test';
 
-import { Input } from './Input';
+import { Form } from './Form';
 
 const meta = {
-  title: 'Example/Input',
-  component: Input,
-  parameters: {
-    layout: 'centered',
-  },
+  title: 'Example/Form',
+  component: Form,
   tags: ['autodocs'],
   argTypes: {
     fullWidth: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },
   args: { onClick: fn() },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Form>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {}
 };
