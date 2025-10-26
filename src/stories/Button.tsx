@@ -2,6 +2,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
 import Ring from  './assets/ring-resize.svg';
 import Image from "next/image";
+import { MouseEventHandler } from 'react';
 
 export interface ButtonProps {
   /** The global variant to use */
@@ -19,7 +20,7 @@ export interface ButtonProps {
   /** Button contents */
   label: string;
   /** Optional click handler */
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 type ButtonClassMap = {
@@ -35,7 +36,8 @@ export const Button = ({
   disabled = false,
   loading = false,
   label,
-  ...props
+  onClick,
+  ...rest
 }: ButtonProps) => {
   const classes: ButtonClassMap = {};
   if (variant == 'solid') classes.variant = 'button--solid';
@@ -61,7 +63,8 @@ export const Button = ({
       type="button"
       className={['button', ...Object.values(classes)].join(' ')}
       disabled={disabled}
-      {...props}
+      onClick={onClick}
+      {...rest}
     >
       <div className='button__label'>
         <div className='button__label__text'>{label}</div>

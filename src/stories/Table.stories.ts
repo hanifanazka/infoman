@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 import { Table } from './Table';
+import { fn } from 'storybook/test';
 
 const meta = {
   title: 'Example/Table',
@@ -114,5 +115,6 @@ export const Default: Story = {
   args: {
     data: defaultData,
     columns: columns,
+    onRowSelectionChange: fn(),
   },
 };

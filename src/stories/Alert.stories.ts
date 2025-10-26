@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 import { Alert } from './Alert';
+import { fn } from 'storybook/test';
 
 const meta = {
   title: 'Example/Alert',
@@ -8,6 +9,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  args: { onRemove: fn() },
 } satisfies Meta<typeof Alert>;
 
 export default meta;

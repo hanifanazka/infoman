@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 import { Menu } from './Menu';
+import { fn } from 'storybook/test';
 
 const meta = {
   title: 'Example/Menu',
@@ -24,11 +25,11 @@ export const Default: Story = {
     actions: [
       {
         label: "Hi",
-        onClick: () => alert("Hi"),
+        onClick: fn(),
       },
       {
         label: "Loognsggsg",
-        onClick: () => alert("Loognsggsg"),
+        onClick: fn(),
       },
     ]
   },
