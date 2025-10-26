@@ -9,7 +9,7 @@ import { GlobalStyle } from "./GlobalStyle";
 export function Form() {
   return (
     <>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Formik
         initialValues={{
           contains: "",
@@ -67,7 +67,7 @@ export function Form() {
           </div>
         </FRMKForm>
       </Formik>
-
+      <br />
 
       <Table
         columns={Default.args.columns}
