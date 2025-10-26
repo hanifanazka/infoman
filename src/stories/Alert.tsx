@@ -7,6 +7,7 @@ import {
 } from "@headlessui/react";
 import { Button } from "./Button";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { GlobalStyle } from "./GlobalStyle";
 
 type Align = 'start' | 'end';
 type Placement = 'top' | 'right' | 'bottom' | 'left';
@@ -34,8 +35,9 @@ export function Alert({
 
   return (
     <div className="alert">
+      <GlobalStyle />
       <div className="icon">
-        <Icon/>
+        <Icon />
       </div>
       <div className="text">
         <span className="text-title">{title}</span>
@@ -68,6 +70,10 @@ export function Alert({
         }
         .text-title {
           font-weight: bold;
+        }
+        .text-desc {
+          margin-top: 4px;
+          font-size: 14px;
         }
         .action {
           display: flex;

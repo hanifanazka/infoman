@@ -1,8 +1,7 @@
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/600.css';
 import Ring from  './assets/ring-resize.svg';
 import Image from "next/image";
 import { MouseEventHandler } from 'react';
+import { GlobalStyle } from './GlobalStyle';
 
 export interface ButtonProps {
   /** The global variant to use */
@@ -66,6 +65,7 @@ export const Button = ({
       onClick={onClick}
       {...rest}
     >
+      <GlobalStyle/>
       <div className='button__label'>
         <div className='button__label__text'>{label}</div>
         {loading && 
