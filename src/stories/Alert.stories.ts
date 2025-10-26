@@ -9,6 +9,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    severity: { control: "select" },
+  },
   args: { onRemove: fn() },
 } satisfies Meta<typeof Alert>;
 
