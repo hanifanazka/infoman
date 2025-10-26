@@ -1,27 +1,94 @@
-import React from "react";
-import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import TablePrimitive from "./TablePrimitive";
+import React, { useEffect, useState } from "react";
+import { ColumnDef, getCoreRowModel, useReactTable, flexRender, RowSelectionState } from "@tanstack/react-table";
+import { Checkbox } from "./Checkbox";
 
 interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T>[];
+  onRowSelectionChange?: (rowSelection: T[]) => void;
 }
 
 export function Table<T>({
   data,
   columns,
+  onRowSelectionChange,
 }: TableProps<T>) {
+  onRowSelectionChange = console.log;
+
+  columns = [{
+    id: 'select',
+    header: ({ table }) => (
+      <div className="checkbox-wrapper">
+        <Checkbox
+          {...{
+            checked: table.getIsAllRowsSelected(),
+            indeterminate: table.getIsSomeRowsSelected(),
+            onChange: table.getToggleAllRowsSelectedHandler(),
+          }}
+        />
+      </div>
+    ),
+    cell: ({ row }) => (
+      <div className="checkbox-wrapper">
+        <Checkbox
+          {...{
+            checked: row.getIsSelected(),
+            disabled: !row.getCanSelect(),
+            indeterminate: row.getIsSomeSelected(),
+            onChange: row.getToggleSelectedHandler(),
+          }}
+        />
+      </div>
+    ),
+  }, ...columns];
+
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
   const table = useReactTable({
     data: data,
     columns: columns,
+    state: { rowSelection },
     getCoreRowModel: getCoreRowModel(),
+    onRowSelectionChange: (rowSelection) => {
+      setRowSelection(rowSelection);
+    },
   });
+
+  useEffect(() => {
+    onRowSelectionChange?.(table.getSelectedRowModel().flatRows.map(r => r.original));
+  }, [rowSelection, onRowSelectionChange, table]);
 
   return (
     <div>
-      <TablePrimitive
-        table={table}
-      />
+      <table>
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <style jsx>{`
         div {
           border-radius: 6px;
@@ -29,27 +96,30 @@ export function Table<T>({
           font-family: Inter;
           font-size: 14px;
         }
-        :global(table) {
+        table {
           border-collapse: collapse;
           width: 100%;
         }
-        :global(thead) {
+        thead {
           background: #F0F4F8; 
           text-align: left;
           font-weight: 600;
         }
-        :global(tbody) { background: #FBFCFE; }
-        div, :global(tbody) :global(tr) {
+        tbody { background: #FBFCFE; }
+        div, tbody tr {
           border: solid 1px rgba(99 107 116 / 0.2);
-
-          &:global(tbody) :global(tr) {
+        }
+        div tbody tr {
             border-right: none;
             border-bottom: none;
             border-left: none;
-          }
         }
-        :global(th) { padding: 12px 6px; }
-        :global(td) { padding: 4px 8px; }
+        th { padding: 12px 6px; }
+        td { padding: 4px 8px; }
+        :global(.checkbox-wrapper) {
+          display: flex;
+          justify-content: center;
+        }
       `}</style>
     </div>
   );
