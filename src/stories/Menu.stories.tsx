@@ -4,7 +4,7 @@ import { Menu } from './Menu';
 import { fn } from 'storybook/test';
 
 const meta = {
-  title: 'Example/Menu',
+  title: 'Component/Menu',
   component: Menu,
   parameters: {
     layout: 'centered',

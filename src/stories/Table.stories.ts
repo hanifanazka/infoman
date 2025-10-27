@@ -4,7 +4,7 @@ import { Table } from './Table';
 import { fn } from 'storybook/test';
 
 const meta = {
-  title: 'Example/Table',
+  title: 'Component/Table',
   component: Table,
 } satisfies Meta<typeof Table>;
 
