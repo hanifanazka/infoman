@@ -14,10 +14,12 @@ type AnchorProps = `${Placement}` | `${Placement} ${Align}`;
 export interface MenuProps {
   /** The global variant to use */
   variant?: 'solid' | 'plain';
+  /** The color of the component */
+  color?: 'primary' | 'secondary';
   /** The size of the component */
   size?: 'sm' | 'md';
   /** Button contents */
-  label: string;
+  children: React.ReactNode;
   /** Configures the way the dropdown is anchored to the button */
   anchor?: AnchorProps;
   /** List of actions text and their onClick handler */
@@ -31,20 +33,23 @@ export interface MenuProps {
 
 export function Menu({
   variant = 'solid',
-  label,
+  children,
   size = 'md',
   actions,
-  anchor
+  anchor,
+  color,
 }: MenuProps) {
 
   return (
     <HUIMenu>
       <HUIMenuButton as={React.Fragment}>
         <Button
-          label={label}
           variant={variant}
           size={size}
-        />
+          color={color}
+        >
+          {children}
+        </Button>
       </HUIMenuButton>
       <HUIMenuItems
         transition

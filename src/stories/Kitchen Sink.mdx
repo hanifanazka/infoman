@@ -1,4 +1,4 @@
-import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
+import { Meta, Unstyled, AnchorMdx } from "@storybook/addon-docs/blocks";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { Combobox } from "./Combobox";
@@ -6,6 +6,7 @@ import { Menu } from "./Menu";
 import { Switch } from "./Switch";
 import { Table } from "./Table";
 import { Alert } from "./Alert";
+import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 <Meta title="Kitchen Sink" />
 
@@ -20,7 +21,9 @@ and interaction across the full spectrum of web standards.
   const buttonInSizes = (props) =>
     ['md','sm'].map((size) => (
       <div style={{ display: "flex", flexDirection: "col" }}>
-        <Button label="Add new" size={size} style={{ margin: 2 }} {...props} />
+        <Button size={size} style={{ margin: 2 }} {...props}>
+          Add new
+        </Button>
       </div>
     ));
   const Vr = () =>
@@ -80,6 +83,14 @@ and interaction across the full spectrum of web standards.
         <p>Loading</p>
         <div>{buttonInSizes({ color: "danger", variant: "plain", loading: true })}</div>
       </div>
+      <Vr />
+      <div>
+        <p>Button icon</p>
+        <Button variant="plain" color="secondary" size="sm">
+          <UserCircleIcon style={{ width: 24, height: 24, display: "block" }} />
+        </Button>
+        <blockquote>See <AnchorMdx href="#menu">menu</AnchorMdx> below</blockquote>
+      </div>
     </div>
   )
 })()}
@@ -130,23 +141,24 @@ and interaction across the full spectrum of web standards.
   <div><p>Switch</p>         <Switch/></div>
 </div>
 
-# Menu
+## Menu
 
 {(() => {
+  const actions = [
+    {
+      label: "Hi",
+      onClick: () => alert("Hi"),
+    },
+    {
+      label: "Loognsggsg",
+      onClick: () => alert("Loognsggsg"),
+    },
+  ];
   const menuAnchor = (anchor) => 
     <Menu {...{
-      label: "Menu",
       anchor,
-      actions: [
-        {
-          label: "Hi",
-          onClick: () => alert("Hi"),
-        },
-        {
-          label: "Loognsggsg",
-          onClick: () => alert("Loognsggsg"),
-        },
-      ]
+      actions,
+      children: "Menu",
     }}/>
   return <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", width: 400, gap: 4 }}>
@@ -179,10 +191,36 @@ and interaction across the full spectrum of web standards.
       </div>
       ))}
     </div>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: 200, gap: 4 }}>
+      <div>
+        <p>Menu icon</p>
+        <Menu anchor="bottom center" {...{actions}}>
+          <UserCircleIcon style={{ width: 24, height: 24, display: "block" }} />
+        </Menu>
+      </div>
+      <div>
+        <p>smaller</p>
+        <Menu anchor="bottom center" size="sm" {...{actions}}>
+          <UserCircleIcon style={{ width: 24, height: 24, display: "block" }} />
+        </Menu>
+      </div>
+      <div>
+        <p>secondary</p>
+        <Menu anchor="bottom center" size="sm" color="secondary" {...{actions}}>
+          <UserCircleIcon style={{ width: 24, height: 24, display: "block" }} />
+        </Menu>
+      </div>
+      <div>
+        <p>plain</p>
+        <Menu anchor="bottom center" size="sm" color="secondary" variant="plain" {...{actions}}>
+          <UserCircleIcon style={{ width: 24, height: 24, display: "block" }} />
+        </Menu>
+      </div>
+    </div>
   </div>;
 })()}
 
-# Table
+## Table
 
 <Unstyled>
 <Table data={[
@@ -278,7 +316,7 @@ and interaction across the full spectrum of web standards.
 />
 </Unstyled>
 
-# Alert
+## Alert
 
 {(() => ["info", "success", "error", "warning"].map(severity => 
   <Alert title={severity} severity={severity}>

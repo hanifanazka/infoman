@@ -17,7 +17,7 @@ export interface ButtonProps {
   /** If `true`, the loading indicator is shown and the button becomes disabled. */
   loading?: false;
   /** Button contents */
-  label: string;
+  children: React.ReactNode;
   /** Optional click handler */
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -34,7 +34,7 @@ export const Button = ({
   fullWidth = false,
   disabled = false,
   loading = false,
-  label,
+  children,
   onClick,
   ...rest
 }: ButtonProps) => {
@@ -68,7 +68,7 @@ export const Button = ({
     >
       <GlobalStyle/>
       <div className='button__label'>
-        <div className='button__label__text'>{label}</div>
+        <div className='button__label__text'>{children}</div>
         {loading && 
           <div className='button__label__ring'>
             <Image src={Ring} alt='loading-ring' width={ringSize} height={ringSize} />
