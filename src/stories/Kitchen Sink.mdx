@@ -313,6 +313,9 @@ and interaction across the full spectrum of web standards.
     { header: "status", accessorKey: "status" },
     { header: "Profile Progress", accessorKey: "profileProgress" },
   ]}
+  onRowSelectionChange={(data) => {
+    if (data.length) alert(JSON.stringify(data))
+  }}
 />
 </Unstyled>
 
