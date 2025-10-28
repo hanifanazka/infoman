@@ -5,6 +5,7 @@ import { Combobox } from "./Combobox";
 import { Menu } from "./Menu";
 import { Switch } from "./Switch";
 import { Table } from "./Table";
+import { Alert } from "./Alert";
 
 <Meta title="Kitchen Sink" />
 
@@ -276,3 +277,11 @@ and interaction across the full spectrum of web standards.
   ]}
 />
 </Unstyled>
+
+# Alert
+
+{(() => ["info", "success", "error", "warning"].map(severity => 
+  <Alert title={severity} severity={severity}>
+    Child content that includes some alert details, like maybe what actually happened.
+  </Alert>
+))()}

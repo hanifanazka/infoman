@@ -95,6 +95,7 @@ export function Alert({
         }
         .text {
           padding: 8px 0;
+          flex: 1;
         }
         .text-title {
           font-weight: bold;
