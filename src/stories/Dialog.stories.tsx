@@ -23,8 +23,8 @@ export const Primary: Story = {
       <>
         <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
         <div className="buttons">
-          <Button onClick={() => close()} label="Cancel" />
-          <Button onClick={() => close()} label="Deactivate" />
+          <Button onClick={() => close()} >Cancel</Button>
+          <Button onClick={() => close()} >Deactivate</Button>
         </div>
         <style jsx>{`
           .buttons {

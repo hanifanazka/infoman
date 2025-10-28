@@ -6,6 +6,7 @@ import { Menu } from "./Menu";
 import { Switch } from "./Switch";
 import { Table } from "./Table";
 import { Alert } from "./Alert";
+import { Dialog } from "./Dialog";
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 <Meta title="Kitchen Sink" />
@@ -326,3 +327,25 @@ and interaction across the full spectrum of web standards.
     Child content that includes some alert details, like maybe what actually happened.
   </Alert>
 ))()}
+
+## Dialog
+
+<Dialog {...{
+    title: "Deactivate account",
+    desc: "This will permanently deactivate your account",
+    children: (({ close }) =>
+      <>
+        <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
+        <div className="buttons">
+          <Button onClick={() => close()} >Cancel</Button>
+          <Button onClick={() => close()} >Deactivate</Button>
+        </div>
+        <style jsx>{`
+          .buttons {
+            display: flex;
+            gap: .5rem;
+          }
+        `}</style>
+      </>
+    ),
+  }}/>

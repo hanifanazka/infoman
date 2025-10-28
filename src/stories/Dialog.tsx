@@ -23,18 +23,18 @@ export function Dialog({
   desc,
   children,
 }: DialogProps) {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const close = () => setIsOpen(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} label="Open dialog" />
+      <Button onClick={() => setIsOpen(true)}>Open dialog</Button>
       <HUIDialog transition open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
         <HUIDialogBackdrop transition className="dialog-backdrop" />
         <div className="dialog">
           <HUIDialogPanel transition className="dialog-panel">
             <div className="close-button">
-              <Button onClick={close} label="✕" variant="plain" color='secondary' />
+              <Button onClick={close} variant="plain" color='secondary' >✕</Button>
             </div>
             <HUIDialogTitle className="font-bold">{title}</HUIDialogTitle>
             <HUIDescription>{desc}</HUIDescription>
