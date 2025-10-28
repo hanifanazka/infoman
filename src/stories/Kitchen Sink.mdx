@@ -1,6 +1,10 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
 import { Button } from "./Button";
 import { Input } from "./Input";
+import { Combobox } from "./Combobox";
+import { Menu } from "./Menu";
+import { Switch } from "./Switch";
+import { Table } from "./Table";
 
 <Meta title="Kitchen Sink" />
 
@@ -11,42 +15,264 @@ and interaction across the full spectrum of web standards.
 
 ## Buttons
 
-> TODO: disabled and loading state
+{(() => {
+  const buttonInSizes = (props) =>
+    ['md','sm'].map((size) => (
+      <div style={{ display: "flex", flexDirection: "col" }}>
+        <Button label="Add new" size={size} style={{ margin: 2 }} {...props} />
+      </div>
+    ));
+  const Vr = () =>
+    <div style={{width:1, margin:"0 .5rem", background: "rgba(99 107 116 / 0.2)"}}>&nbsp;</div>
+  return (
+    <div style={{ display: "flex" }}>
+      <div>
+        <p>Normal button</p>
+        <div>{buttonInSizes()}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ loading: true })}</div>
+      </div>
+      <Vr />
+      <div>
+        <p>Plain button</p>
+        <div>{buttonInSizes({ variant: "plain" })}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ variant: "plain", disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ variant: "plain", loading: true })}</div>
+      </div>
+      <Vr />
+      <div>
+        <p>Normal secondary</p>
+        <div>{buttonInSizes({ color: "secondary" })}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ color: "secondary", disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ color: "secondary", loading: true })}</div>
+      </div>
+      <Vr />
+      <div>
+        <p>Plain secondary</p>
+        <div>{buttonInSizes({ color: "secondary", variant: "plain" })}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ color: "secondary", variant: "plain", disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ color: "secondary", variant: "plain", loading: true })}</div>
+      </div>
+      <Vr />
+      <div>
+        <p>Normal danger</p>
+        <div>{buttonInSizes({ color: "danger" })}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ color: "danger", disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ color: "danger", loading: true })}</div>
+      </div>
+      <Vr />
+      <div>
+        <p>Plain danger</p>
+        <div>{buttonInSizes({ color: "danger", variant: "plain" })}</div>
+        <p>Disabled</p>
+        <div>{buttonInSizes({ color: "danger", variant: "plain", disabled: true })}</div>
+        <p>Loading</p>
+        <div>{buttonInSizes({ color: "danger", variant: "plain", loading: true })}</div>
+      </div>
+    </div>
+  )
+})()}
 
-<div style={{display:'flex',flexWrap:'wrap',alignItems:'start'}}>
-{['primary','danger'].map((color) => (
-<div>
-{[true,false].map((loading) => (
-<div>
-{['sm','md'/*,'lg'*/].map((size) => (
-<div>
-{['solid'/*,'soft','outline'*/,'plain'].map((variant) => (
-  <Button
-    label="Add new"
-    size={size}
-    variant={variant}
-    color={color}
-    loading={loading}
-    style={{margin:2}}
-  />
-))}
-</div>
-))}
-</div>
-))}
-</div>
-))}
+## Form fields
+
+<div style={{ 
+  display: "grid", 
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+  gap: 8,
+}}>
+  <div><p>date</p>           <Input type="date"           fullWidth /></div>
+  <div><p>datetime-local</p> <Input type="datetime-local" fullWidth /></div>
+  <div><p>email</p>          <Input type="email"          fullWidth /></div>
+  <div><p>month</p>          <Input type="month"          fullWidth /></div>
+  <div><p>number</p>         <Input type="number"         fullWidth /></div>
+  <div><p>password</p>       <Input type="password"       fullWidth /></div>
+  <div><p>search</p>         <Input type="search"         fullWidth /></div>
+  <div><p>tel</p>            <Input type="tel"            fullWidth /></div>
+  <div><p>text</p>           <Input type="text"           fullWidth /></div>
+  <div><p>time</p>           <Input type="time"           fullWidth /></div>
+  <div><p>url</p>            <Input type="url"            fullWidth /></div>
+  <div><p>week</p>           <Input type="week"           fullWidth /></div>
+  <div><p>Combobox</p>       <Combobox fullWidth
+    data={[
+      "Martinus Yanto",
+      "Andi Asiyah",
+      "Mochamad Rohimah",
+      "Basri Suryati",
+      "Suhardi Aminah",
+      "Ridwan Kosasih",
+      "Irfan Telaumbanua",
+      "Ir Hamdani",
+      "Sofyan Alamsyah",
+      "Dadan Sihombing",
+      "Feri Ansori",
+      "Ujang Kasim",
+      "Drs Solihat",
+      "Hermanto Wenda",
+      "Didik Soleh",
+      "Muhammad Yanti",
+      "Azis",
+      "Suratno Wahyudin",
+      "Hendri Wibisono",
+      "Junaidi Jaya",
+    ]}
+  /></div>
+  <div><p>Switch</p>         <Switch/></div>
 </div>
 
-## Inputs
+# Menu
 
-> TODO: disabled and loading state
+{(() => {
+  const menuAnchor = (anchor) => 
+    <Menu {...{
+      label: "Menu",
+      anchor,
+      actions: [
+        {
+          label: "Hi",
+          onClick: () => alert("Hi"),
+        },
+        {
+          label: "Loognsggsg",
+          onClick: () => alert("Loognsggsg"),
+        },
+      ]
+    }}/>
+  return <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", width: 400, gap: 4 }}>
+      {[
+        "bottom start",
+        "bottom center",
+        "bottom end",
+        "top start",
+        "top center",
+        "top end",
+      ].map((anchor) => (
+      <div>
+        <p style={{ textWrap: "nowrap" }}>{anchor}</p>
+        {menuAnchor(anchor)}
+      </div>
+      ))}
+    </div>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: 200, gap: 4 }}>
+      {[
+    "right start",
+    "left start",
+    "right center",
+    "left center",
+    "right end",
+    "left end",
+      ].map((anchor) => (
+      <div>
+        <p style={{ textWrap: "nowrap" }}>{anchor}</p>
+        {menuAnchor(anchor)}
+      </div>
+      ))}
+    </div>
+  </div>;
+})()}
 
-<div style={{display:'flex',flexWrap:'wrap',alignItems:'start'}}>
-{['sm','md','lg'].map((size) => (
-  <Input
-    size={size}
-    style={{margin:2}}
-  />
-))}
-</div>
+# Table
+
+<Unstyled>
+<Table data={[
+  {
+    "firstName": "Derek",
+    "lastName": "Terry",
+    "age": 10,
+    "visits": 174,
+    "status": "complicated",
+    "profileProgress": 75
+  },
+  {
+    "firstName": "Alda",
+    "lastName": "Bergstrom-Abbott",
+    "age": 39,
+    "visits": 608,
+    "status": "single",
+    "profileProgress": 59
+  },
+  {
+    "firstName": "Ofelia",
+    "lastName": "Ernser",
+    "age": 3,
+    "visits": 362,
+    "status": "relationship",
+    "profileProgress": 75
+  },
+  {
+    "firstName": "Alfonzo",
+    "lastName": "Heidenreich-Lesch",
+    "age": 24,
+    "visits": 805,
+    "status": "relationship",
+    "profileProgress": 75
+  },
+  {
+    "firstName": "Aubree",
+    "lastName": "Harvey",
+    "age": 21,
+    "visits": 667,
+    "status": "single",
+    "profileProgress": 10
+  },
+  {
+    "firstName": "Wilber",
+    "lastName": "Grant",
+    "age": 17,
+    "visits": 587,
+    "status": "relationship",
+    "profileProgress": 74
+  },
+  {
+    "firstName": "Aracely",
+    "lastName": "Daugherty",
+    "age": 3,
+    "visits": 547,
+    "status": "single",
+    "profileProgress": 29
+  },
+  {
+    "firstName": "Austin",
+    "lastName": "Ward",
+    "age": 7,
+    "visits": 913,
+    "status": "complicated",
+    "profileProgress": 56
+  },
+  {
+    "firstName": "Leonardo",
+    "lastName": "Hessel",
+    "age": 17,
+    "visits": 937,
+    "status": "single",
+    "profileProgress": 11
+  },
+  {
+    "firstName": "Jerald",
+    "lastName": "Schaefer",
+    "age": 29,
+    "visits": 609,
+    "status": "single",
+    "profileProgress": 15
+  }
+  ]}
+  columns={[
+    { header: "First Name", accessorKey: "firstName" },
+    { header: "Last Name", accessorKey: "lastName" },
+    { header: "Age", accessorKey: "age" },
+    { header: "Visits", accessorKey: "visits" },
+    { header: "status", accessorKey: "status" },
+    { header: "Profile Progress", accessorKey: "profileProgress" },
+  ]}
+/>
+</Unstyled>

@@ -13,11 +13,13 @@ import { GlobalStyle } from './GlobalStyle'
 interface ComboboxProps<T> {
   data: T[];
   accessor?: (item: T) => string;
+  fullWidth?: boolean;
 }
 
 export function Combobox<T>({
   data,
   accessor,
+  fullWidth,
 }: ComboboxProps<T>) {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<typeof data | null>();
@@ -31,14 +33,18 @@ export function Combobox<T>({
       : data.filter((data) => {
         return getString(data).toLowerCase().includes(query.toLowerCase());
       })
+  
+  const classes = {};
+  if (fullWidth) classes.fullWidth = 'combobox--fullwidth';
 
   return (
     <MUICombobox value={selected} onChange={(value) => setSelected(value)} onClose={() => setQuery('')}>
       <GlobalStyle />
-      <div className="relative">
+      <div className={["relative", ...Object.values(classes)].join(' ')}>
         <MUIComboboxInput
           className={clsx('combobox__input',
-            'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
+            'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25',
+            ...Object.values(classes)
           )}
           displayValue={getString}
           onChange={(event) => setQuery(event.target.value)}
@@ -62,7 +68,6 @@ export function Combobox<T>({
             value={data}
             className="combobox__option group flex cursor-default items-center gap-2 rounded-lg px-3 py-1.5 select-none data-focus:bg-white/10"
           >
-            <CheckIcon className="checkicon size-4 fill-white group-data-selected:visible" />
             <div className="text-sm/6 text-white">{getString(data)}</div>
           </MUIComboboxOption>
         ))}
@@ -107,8 +112,12 @@ export function Combobox<T>({
         }
         .combobox__option {
           display: flex;
+          padding: 2px 4px;
+          &[data-focus] {
+            background: #3584E4;
+          }
           &[data-selected] {
-            background: pink;
+            background: #3584E4;
             & .checkicon {
               opacity: 1;
             }
@@ -119,6 +128,10 @@ export function Combobox<T>({
           border: solid 1px rgba(99 107 116 / 0.2);
           box-shadow: rgba(21, 21, 21, 0.08) 0px 1px 2px 0px;
           border-radius: 6px;
+          background: white;
+        }
+        .combobox--fullwidth {
+          width: 100%;
         }
       `}</style>
     </MUICombobox>

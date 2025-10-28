@@ -77,9 +77,10 @@ export const Button = ({
       </div>
       <style jsx>{`
         .button {
-          border: none;
           font-weight: 600;
           font-family: 'Inter';
+          border: solid 1px transparent;
+          box-shadow: rgba(21, 21, 21, 0.08) 0px 1px 2px 0px;
         }
         .button__label {
           display: flex;
@@ -112,6 +113,7 @@ export const Button = ({
         .button--plain {
           background-color: transparent;
           color: var(--button-bg);
+          box-shadow: none;
         }
         .button--plain:hover {
           background-color: hsl(from var(--button-bg) h 30 65 / .5);
@@ -126,7 +128,7 @@ export const Button = ({
           border: solid 1px rgba(90, 94, 98, 0.12);
           &.button--plain {
             color: var(--button-fg);
-            border: none;
+            border: transparent;
           }
         }
         .button--danger {
