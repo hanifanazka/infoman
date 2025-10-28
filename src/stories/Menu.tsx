@@ -62,6 +62,7 @@ export function Menu({
           .menu-items {
             transition-duration: 100ms;
             transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            transition-property: scale, opacity;
 
             /* TODO: wrong position flash at first click */
             &[data-anchor="top center"]   { transform-origin: bottom center; }
